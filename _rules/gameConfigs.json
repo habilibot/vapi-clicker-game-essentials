@@ -1,0 +1,20 @@
+{
+  "default_energy_regen_per_sec": 1,
+  "default_energy_limit": 2500,
+  "default_energy_start": 1000,
+  "default_earned_points_per_tap": 1,
+  "max_energy_refills_per_day": 3,
+  "referral_bonus_point": 1000,
+  "referral_bonus_point_premium": 5000,
+  "multitap_upgrade_price_multiplier": 2,
+  "multitap_upgrade_base_increment": 1,
+  "multitap_upgrade_increment_multiplier": 1,
+  "energy_limit_upgrade_price_multiplier": 2,
+  "energy_limit_upgrade_base_increment": 500,
+  "energy_limit_upgrade_increment_multiplier": 1,
+  "mining_upgrade_base_price": 100,
+  "mining_upgrade_price_multiplier": 1.5,
+  "mining_upgrade_base_increment": 100,
+  "mining_upgrade_increment_multiplier": 1.2,
+  "energy_refill_interval_ms": 500
+}
