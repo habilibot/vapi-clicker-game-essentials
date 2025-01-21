@@ -1,2 +1,4 @@
 name: clicker-game-essentials
 version: "0.1.0"
+schemas:
+  - clicker

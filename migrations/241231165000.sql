@@ -56,6 +56,7 @@ INSERT INTO clicker.booster (title, description, type, base_price) VALUES
     ('Multi Tap', 'Increase the number of points you get per tap', 'MULTI_TAP', 1000),
     ('Energy Limit', 'Increase the max energy limit', 'ENERGY_LIMIT', 1000);
 
+ALTER TABLE clicker.booster ENABLE ROW LEVEL SECURITY;
 
 -- --User Booster
 CREATE TABLE clicker.user_booster (
@@ -71,6 +72,8 @@ CREATE POLICY "service_role_full_access"
 ON clicker.user_booster
 FOR ALL
 USING (auth.role() = 'service_role');
+
+ALTER TABLE clicker.user_booster ENABLE ROW LEVEL SECURITY;
 
 CREATE OR REPLACE FUNCTION upgrade_booster (
     game_profile_id UUID,
@@ -106,6 +109,8 @@ ON clicker.daily_booster
 FOR ALL
 USING (auth.role() = 'service_role');
 
+ALTER TABLE clicker.daily_booster ENABLE ROW LEVEL SECURITY;
+
 INSERT INTO clicker.daily_booster (title, description, type, max_available) VALUES
     ('Daily Refill', 'Refill your energy daily', 'DAILY_REFILL', 5);
 
@@ -123,6 +128,8 @@ CREATE POLICY "service_role_full_access"
 ON clicker.user_daily_booster
 FOR ALL
 USING (auth.role() = 'service_role');
+
+ALTER TABLE clicker.user_daily_booster ENABLE ROW LEVEL SECURITY;
 
 GRANT SELECT, INSERT, UPDATE, DELETE
 ON ALL TABLES IN SCHEMA clicker
