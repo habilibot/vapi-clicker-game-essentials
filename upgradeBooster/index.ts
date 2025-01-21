@@ -1,4 +1,4 @@
-import { createClient } from 'jsr:@supabase/supabase-js@2';
+import { createClient } from "https://esm.sh/@shaple/shaple@0.2.2";
 import { calculateUpgradeCost } from '../_rules/rule.ts';
 import gameConfigs from '../_rules/gameConfigs.json' with { type: 'json' };
 import { convertToBoosterWithContext } from '../_dto/booster.ts';

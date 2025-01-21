@@ -1,4 +1,4 @@
-import { createClient } from 'jsr:@supabase/supabase-js@2';
+import { createClient } from "https://esm.sh/@shaple/shaple@0.2.2";
 import { convertToBoosterWithContext } from '../_dto/booster.ts';
 
 export default async (req: Request) => {
