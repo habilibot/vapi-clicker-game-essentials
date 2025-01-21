@@ -1,0 +1,192 @@
+openapi: 3.0.0
+info:
+  title: Clicker Game Essentials VAPI
+  version: 1.0.0
+  description: Prefix all endpoints with /clicker-game-essentials
+paths:
+  /getGameContext:
+    post:
+      summary: Get user game context
+      tags:
+        - GameContext
+      responses:
+        '200':
+          description: Get Game context. create new if not exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGameContext'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+  /syncGameContext:
+    post:
+      summary: Sync game context
+      tags:
+        - GameContext
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                points:
+                  type: integer
+                currentEnergy:
+                  type: integer
+                timestamp:
+                  type: string
+                  format: integer
+      responses:
+        '200':
+          description: Synced game context
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGameContext'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Task not found
+        '412':
+          description: Task is not completed
+        '500':
+          description: Internal server error
+  /listBooster:
+    post:
+      summary: List boosters
+      tags:
+        - Boosters
+      responses:
+        '200':
+          description: Booster list
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/BoosterItem'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+  /listDailyBooster:
+    post:
+      summary: List daily boosters
+      tags:
+        - Boosters
+      responses:
+        '200':
+          description: Booster list
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/DailyBoosterItem'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+  /upgradeBooster:
+    post:
+      summary: Upgrade booster
+      tags:
+        - Boosters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+      responses:
+        '200':
+          description: Upgraded booster
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoosterItem'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Task not found
+        '412':
+          description: Task is not completed
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    DailyBoosterItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        maxAmount:
+          type: integer
+        remainingAmount:
+          type: integer
+    BoosterItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        currentPrice:
+          type: number
+        currentLevel:
+          type: number
+    UserGameContext:
+      type: object
+      properties:
+        levelName:
+          type: string
+        energyLimit:
+          type: integer
+        remainingEnergyRefills:
+          type: integer
+        totalEarnedPoints:
+          type: integer
+        energyBalance:
+          type: integer
+        pointBalance:
+          type: integer
+        multitapLevel:
+          type: integer
+        energyLimitLevel:
+          type: integer
+        lastEnergyRefilledAt:
+          type: string
+          format: date-time
+        lastEnergyUpdatedAt:
+          type: string
+          format: date-time
+        lastPointUpdatedAt:
+          type: string
+          format: date-time
+        maxEnergyRefillsPerDay:
+          type: integer
+        pointEarnsPerClick:
+          type: integer
+        energyConsumesPerClick:
+          type: integer
+        energyRefillInterval:
+          type: integer
+        
